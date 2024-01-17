@@ -72,6 +72,7 @@ const token = wrap(cookies.get("access-token"))
 const plan = token
     .map(getJwtPayload)
     .map((payload) => getUserPlan(payload.userId))
+    .run(sendUserPlanEmail)
     .unwrap()
 
 // Plan will be either Some<UserPlan> or None
